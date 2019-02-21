@@ -1,0 +1,84 @@
+<html>
+<p>This is the readme for the model and methods associated with the paper:
+</p>
+<p>Jedrzejewski-Szmek Z, Abrahao KP, Jedrzejewska-Szmek J, Lovinger DM, Blackwell KT (2018) Parameter Optimization Using Covariance Matrix Adaptation-Evolutionary Strategy (CMA-ES), an Approach to Investigate Differences in Channel Properties Between Neuron Subtypes. Front Neuroinform 12:47
+doi: <a href="https://doi.org/10.3389/fninf.2018.00047">https://doi.org/10.3389/fninf.2018.00047</a>
+</p>
+<p>The model and method are available in both modeldb and github however the associated data is only on github.  In modeldb the model is in this archives mosse-nerp folder and the method is in the ajustador folder (optimization of python code).
+Please see the readme's in those folders.
+</p>
+<p/> Below excerpts from the paper indicate the contents of the github repositories.  Please see the paper for more details.
+<hr/>
+<p>The parameters are
+optimized using the covariance matrix adaptation evolutionary
+strategy (<a href="https://github.com/CMA-ES/pycma">https://github.com/CMA-ES/pycma</a>).
+</p>
+<p>To facilitate reproducibility, re-use and extension, the declarative
+model specification uses a modular format. The ion channel
+kinetics are specified in one file: (<a href="https://github.com/neurord/moose_nerp/blob/master/moose_nerp/d1d2/param_chan.py">https://github.com/neurord/moose_nerp/blob/master/moose_nerp/d1d2/param_chan.py</a>
+
+</p>
+<p>Both the morphology file (either standard GENESIS .p files
+or .swc files are supported by MOOSE) and conductances (in
+units of Siemens/m2) are specified in a separate file (<a href="https://github.com/neurord/moose_nerp/blob/master/moose_nerp/d1d2/param_cond.py">https://github.com/neurord/moose_nerp/blob/master/moose_nerp/d1d2/param_cond.py</a>)
+</p>
+<p>Explicit spines, calcium dynamics, and synaptic channels are
+each optional and specified in separate files. Calcium dynamics
+can be specified either with a single time constant of decay or
+utilizing various mechanisms such as calcium buffers, pumps
+and diffusion. Model stimulation, creation of output elements
+and model simulation are clearly and explicitly separated from
+the model creation. Parameter specification files are imported in
+<a href="https://github.com/neurord/moose_nerp/blob/master/moose_nerp/d1d2/__init__.py">https://github.com/neurord/moose_nerp/blob/master/moose_nerp/d1d2/__init__.py</a>
+
+</p>
+<p>The
+complete model specification is available at <a href="https://github.com/neurord/moose_nerp/">https://github.com/neurord/moose_nerp/</a>
+, with moose_nerp/d1d2 specifying the SP
+model parameters and moose_nerp/gp specifying the GPe model
+parameters.
+</p>
+<p>The experimental data used
+for the optimizations are part of the python package waves,
+available at <a href="https://github.com/neurord/waves">https://github.com/neurord/waves</a>. The data consists
+of recordings from identified external globus pallidus neurons
+and unidentified striatal spiny projection neurons. As the data
+was collected for other purposes, the current injection protocol
+was implemented only once per neuron.
+</p>
+<p>Feature extraction
+functions are specified in <a href="https://github.com/neurord/ajustador/blob/master/ajustador/features.py">https://github.com/neurord/ajustador/blob/master/ajustador/features.py</a>
+, and they are combined into
+a fitness function in <a href="https://github.com/neurord/ajustador/blob/master/ajustador/fitnesses.py">https://github.com/neurord/ajustador/blob/master/ajustador/fitnesses.py</a>.
+</p>
+<p>Features are further described in
+the online documentation (<a href="https://neurord.github.io/ajustador/features.html">https://neurord.github.io/ajustador/features.html</a> and <a href="https://neurord.github.io/ajustador/fitnesses.html">https://neurord.github.io/ajustador/fitnesses.html</a>
+
+</p>
+<p>For the simulations reported, the initial values
+were conductances from a roughly hand-tuned model to start
+the optimization in an area that exhibits spiking behavior
+(Supplementary Figure 1, also available at <a href="https://github.com/neurord/ajustador/tree/master/FrontNeuroinf/FigSuppl_initialconditions.jpg">https://github.com/neurord/ajustador/tree/master/FrontNeuroinf/FigSuppl_initialconditions.jpg</a>
+
+</p>
+<p>Experimental data can be specified using one of two different
+file formats: Igor binaries or comma separated values. The
+traces for the experiments are placed in a separate subdirectory,
+e.g., gpedata_experimental, and the class Param in the python
+package waves (<a href="https://github.com/neurord/waves">https://github.com/neurord/waves</a>) specifies the
+onset and offset time of the injection current, as well as the time
+frame for measuring baseline membrane potential and steady
+state depolarization. Since the data specification is a separate
+module, adding support for other file formats is straightforward.
+</p>
+<p>The python package ajustador is available at <a href="https://github.com/neurord/ajustador">https://github.com/neurord/ajustador</a>
+, and the scripts used to run the
+simulations are at <a href="https://github.com/neurord/ajustador/tree/master/FrontNeuroinf">https://github.com/neurord/ajustador/tree/master/FrontNeuroinf</a>.
+</p>
+<p>The convergence was determined from
+the change in mean fitness: the slope of the mean fitness
+across 25 generations must be &lt;0.002 and the standard
+deviation of mean fitness across 25 generations must be
+less than 0.06 (implemented in <a href="https://github.com/neurord/ajustador/tree/master/ajustador/helpers/converge.py">https://github.com/neurord/ajustador/tree/master/ajustador/helpers/converge.py</a>).
+</p>
+</html>
